@@ -17,3 +17,145 @@ int main() {
     }
     return 0;
 }
+
+
+
+
+
+Exercício 2: Matriz 10x10 com 8, exceto um 0 aleatório
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int matriz[10][10];
+    srand(time(NULL));
+
+    // Preenche com 8
+    for (int i = 0; i < 10; i++)
+        for (int j = 0; j < 10; j++)
+            matriz[i][j] = 8;
+
+    // Posição aleatória
+    int aleatorio_i = rand() % 10;
+    int aleatorio_j = rand() % 10;
+    matriz[aleatorio_i][aleatorio_j] = 0;
+
+    // Exibe matriz
+    printf("Matriz 10x10 com um zero:\n");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+
+
+
+
+
+Exercício 3: Matriz 20x20 com soma das linhas
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int matriz[20][20];
+    int soma_linha, maior_soma = 0, linha_maior = 0;
+
+    srand(time(NULL));
+
+    // Preenche com valores aleatórios de 10 a 99
+    for (int i = 0; i < 20; i++)
+        for (int j = 0; j < 20; j++)
+            matriz[i][j] = rand() % 90 + 10;
+
+    // Soma das linhas
+    for (int i = 0; i < 20; i++) {
+        soma_linha = 0;
+        for (int j = 0; j < 20; j++) {
+            soma_linha += matriz[i][j];
+        }
+        printf("Soma da linha %d = %d\n", i, soma_linha);
+
+        if (soma_linha > maior_soma) {
+            maior_soma = soma_linha;
+            linha_maior = i;
+        }
+    }
+
+    printf("Linha com maior soma: %d (soma = %d)\n", linha_maior, maior_soma);
+    return 0;
+}
+
+
+
+
+
+Exercício 4: Soma da diagonal principal da mesma matriz 20x20
+
+
+
+// Continuando do exercício 3
+    int soma_diagonal = 0;
+    for (int i = 0; i < 20; i++) {
+        soma_diagonal += matriz[i][i];
+    }
+    printf("Soma da diagonal principal: %d\n", soma_diagonal);
+
+
+
+
+
+
+Exercício 5 - Desafio JEDI MASTER ADVANCED PLUS II
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    char matriz[10][10];
+    int x = 5, y = 5; // posição inicial
+    int comando;
+
+    // Preenche com '0'
+    for (int i = 0; i < 10; i++)
+        for (int j = 0; j < 10; j++)
+            matriz[i][j] = '0';
+
+    matriz[x][y] = '5';
+
+    while (true) {
+        // Exibe matriz
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++)
+                printf("%c ", matriz[i][j]);
+            printf("\n");
+        }
+
+        printf("Digite um comando (2=baixo, 4=esquerda, 6=direita, 8=cima, 0=sair): ");
+        scanf("%d", &comando);
+
+        if (comando == 0) break;
+
+        matriz[x][y] = '0'; // limpa posição atual
+
+        switch (comando) {
+            case 2: if (x < 9) x++; break;
+            case 8: if (x > 0) x--; break;
+            case 4: if (y > 0) y--; break;
+            case 6: if (y < 9) y++; break;
+            default: printf("Comando inválido!\n");
+        }
+
+        matriz[x][y] = '5'; // nova posição
+    }
+
+    printf("Fim do programa.\n");
+    return 0;
+}

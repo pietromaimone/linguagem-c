@@ -1,7 +1,5 @@
 1. Matriz 3x3 com elemento central igual a 9
-c
-Copiar
-Editar
+
 #include <stdio.h>
 
 int main() {
